@@ -1,0 +1,6 @@
+R,kalyani_1,kalyani_2,kalyani_3,kalyani_4,kalyani_5
+kalyani_1,0,1,1,1,0
+kalyani_2,1,0,1,1,0
+kalyani_3,1,1,0,1,1
+kalyani_4,1,1,1,0,1
+kalyani_5,0,0,1,1,0
