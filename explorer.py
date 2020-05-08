@@ -154,5 +154,4 @@ def setup(network_matrix):
     topology, header = fetch_topology(network_matrix)
     vms = fetch_req_vms(header, all_machines)
     networks = fetch_networks(topology)
-	print networks
     return vms, networks
