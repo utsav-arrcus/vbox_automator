@@ -24,7 +24,7 @@ def fetch_networks(topology):
 		for i, val in enumerate(vals[1:]):
 			for j in range(0, int(val)):
 				vms = sorted([vals[0], header[i+1]])
-				networks[vals[0]].append(vms[0]+'_'+vms[1])
+				networks[vals[0]].append(vms[0]+'_'+vms[1]+'_'+str(len(networks[vals[0]])+1))
 	return networks
 
 def fetch_req_vms(header, all_machines):
@@ -154,4 +154,5 @@ def setup(network_matrix):
     topology, header = fetch_topology(network_matrix)
     vms = fetch_req_vms(header, all_machines)
     networks = fetch_networks(topology)
+	print networks
     return vms, networks
