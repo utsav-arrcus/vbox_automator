@@ -71,9 +71,9 @@ def change_password(vms):
         time.sleep(0.2)
         session.console.keyboard.put_keys("passwd\n")
         time.sleep(0.2)
-        session.console.keyboard.put_keys("onl\n")
+        session.console.keyboard.put_keys("arrcus\n")
         time.sleep(0.2)
-        session.console.keyboard.put_keys("onl\n")
+        session.console.keyboard.put_keys("arrcus\n")
         time.sleep(0.2)
 
 def config_ssh(vms):
@@ -90,7 +90,7 @@ def config_ssh(vms):
         time.sleep(0.2)
         session.console.keyboard.put_keys("system ssh-server permit-root-login true\n")
         time.sleep(0.2)
-        session.console.keyboard.put_keys("system aaa authentication admin-user admin-password onl\n")
+        session.console.keyboard.put_keys("system aaa authentication admin-user admin-password arrcus\n")
         time.sleep(0.2)
         session.console.keyboard.put_keys("commit\n")        
         time.sleep(0.2)

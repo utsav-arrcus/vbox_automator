@@ -1,6 +1,0 @@
-R,431EFT1_automation_1,431EFT1_automation_2,431EFT1_automation_3,431EFT1_automation_4,431EFT1_automation_5
-431EFT1_automation_1,0,1,1,1,0
-431EFT1_automation_2,1,0,1,1,0
-431EFT1_automation_3,1,1,0,1,1
-431EFT1_automation_4,1,1,1,0,1
-431EFT1_automation_5,0,0,1,1,0
