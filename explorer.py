@@ -1,39 +1,37 @@
 import virtualbox
 from virtualbox.library import NetworkAttachmentType
-import re, sys, time
+import re, sys, time, csv
 
 
 def fetch_topology(filename):
-    with open(filename, 'r') as filedata:
-        topology = filedata.read()
-    header = topology.split('\n')[0].split(',')[1]
-    m = re.search('(.*)_(\d+)$', header)
-    header = m.group(1)
-    return topology, header
+    with open(filename, 'r') as csvfile:
+        topology_data = list(csv.reader(csvfile))
+        vm_names = topology_data[0][1:]
+    return vm_names, topology_data
 
-def fetch_networks(topology):
-	networks = {}
-	rows = topology.split('\n')
-	header = rows[0]
-	header = header.split(',')
-	rows = rows[1:]
-	for row in rows:
-		vals = row.split(',')
-		
-		networks[vals[0]] = []
-		for i, val in enumerate(vals[1:]):
-			for j in range(0, int(val)):
-				vms = sorted([vals[0], header[i+1]])
-				networks[vals[0]].append(vms[0]+'_'+vms[1]+'_'+str(len(networks[vals[0]])+1))
-	return networks
+def fetch_networks(vm_names, topology):
+    topo_networks = {}
+    for row in topology[1:]:
+        for i in range(1, len(row[1:])):
+            if int(row[i]) > 0:
+                net_name = '_'.join(sorted([row[0], vm_names[i-1]]))
+                topo_networks[net_name] = int(row[i])
+                net_name
+    networks = {}
+    for vm in vm_names:
+        networks[vm] = []
+        for net_name in topo_networks.keys():
+            if vm in net_name:
+                for i in range(topo_networks[net_name]):
+                    networks[vm].append("{}_{}".format(net_name, i))
+    return networks
 
-def fetch_req_vms(header, all_machines):
-	interested_vms = []
-	for machine in all_machines:
-		m = re.match(header+'_\d+', machine.name)
-		if m is not None:
-			interested_vms.append(machine)
-	return interested_vms
+def fetch_req_vms(vm_names, all_machines):
+    interested_vms = []
+    for machine in all_machines:
+        if machine.name in vm_names:
+            interested_vms.append(machine)
+    return interested_vms
 
 def create_networks(vms, networks):
     for vm_name in networks.keys():
@@ -151,7 +149,7 @@ def run_commands(vms, commands):
 def setup(network_matrix):
     vbox = virtualbox.VirtualBox()
     all_machines = vbox.machines
-    topology, header = fetch_topology(network_matrix)
-    vms = fetch_req_vms(header, all_machines)
-    networks = fetch_networks(topology)
+    vm_names, topology_matrix = fetch_topology(network_matrix)
+    vms = fetch_req_vms(vm_names, all_machines)
+    networks = fetch_networks(vm_names, topology_matrix)
     return vms, networks
