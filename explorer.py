@@ -24,6 +24,7 @@ def fetch_networks(vm_names, topology):
             if vm in net_name:
                 for i in range(topo_networks[net_name]):
                     networks[vm].append("{}_{}".format(net_name, i))
+        networks[vm] = sorted(networks[vm])
     return networks
 
 def fetch_req_vms(vm_names, all_machines):

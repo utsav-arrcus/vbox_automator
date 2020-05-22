@@ -1,7 +1,7 @@
-R,aminor_0605_1,aminor_0605_2,aminor_0605_3,aminor_0605_4,aminor_0605_5,aminor_0605_6
-aminor_0605_1,0,1,0,1,0,2
-aminor_0605_2,1,0,1,0,0,0
-aminor_0605_3,0,1,0,1,1,1
-aminor_0605_4,1,0,1,0,1,0
-aminor_0605_5,0,0,1,1,0,1
-aminor_0605_6,2,0,1,0,1,0
+R,0521aminor_1,0521aminor_2,0521aminor_3,0521aminor_4,0521aminor_5,0521aminor_6
+0521aminor_1,0,1,1,1,0,2
+0521aminor_2,1,0,1,1,0,0
+0521aminor_3,1,1,0,1,1,1
+0521aminor_4,1,1,1,0,1,0
+0521aminor_5,0,0,1,1,0,1
+0521aminor_6,2,0,1,0,1,0
